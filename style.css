@@ -108,7 +108,7 @@ body {
 .download {
   display: flex;
   width: 100%;
-  justify-content: space-evenly;
+  justify-content: center;
   align-items: center;
   padding: 1rem;
 }
@@ -116,7 +116,8 @@ body {
 .app-download {
   height: 3rem;
   width: 10rem;
-  background-size: cover;
+  margin-left: 0.5rem;
+  background-size: contain;
 }
 
 .app-download:nth-child(1) {
