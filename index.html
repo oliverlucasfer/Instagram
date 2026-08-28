@@ -1,43 +1,359 @@
 <!DOCTYPE html>
-<html>
+<html lang="pt-BR" data-theme="light">
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta
+      name="description"
+      content="Entre no Instagram. Faça login para ver fotos e vídeos dos seus amigos."
+      data-i18n="metaDescription"
+    />
+    <meta name="color-scheme" content="light dark" />
+    <link rel="icon" type="image/png" href="./img/instagram-logo.png" />
     <link rel="stylesheet" href="style.css" />
-    <title>Instagram</title>
+    <title data-i18n="brand">Instagram</title>
   </head>
   <body>
-    <div class="instagram-wrapper">
-      <div class="instagram-phone">
-        <img src="./img/instagram-celular.png" alt="celular" />
+    <header class="topbar">
+      <div class="topbar__inner">
+        <button
+          id="theme-toggle"
+          class="theme-toggle"
+          type="button"
+          aria-pressed="false"
+          aria-label="Alternar tema"
+          data-i18n-aria="themeLabel"
+        >
+          <span class="theme-toggle__icon" aria-hidden="true">🌙</span>
+        </button>
       </div>
-      <div class="instagram-continue">
-        <div class="group">
-          <img
-            src="./img/instagram-logo.png"
-            alt="logo do Instagram"
-            class="instagram-logo"
-          />
-          <div class="profile-photo">
-            <img src="./img/perfil-instagram.jpg" alt="foto de perfil" />
-          </div>
-          <a href="#" class="instagram-login">Continue como oliverlucasfer</a>
-          <a href="#" class="instagram-logout">Remover conta</a>
-        </div>
-        <div class="group">
-            <p class="not-account">Não é oliverlucasfer?</p>
-            <p class="not-account">
-                <span class="link-blue">Alternar contas</span>
-                <span class="link-blue">Inscreva-se</span>
-            </p>
-        </div>
-        <div class="get-the-app">
-            <p class="get-app">Baixe o aplicativo</p>
-            <div class="download">
-                <a href="#" class="app-download"></a>
-                <a href="#" class="app-download"></a>
+    </header>
+
+    <main id="app">
+      <!-- ============ LOGIN ============ -->
+      <section class="view" data-view="login" hidden>
+        <h1 class="visually-hidden" data-view-heading tabindex="-1" data-i18n="loginView">
+          Entrar no Instagram
+        </h1>
+
+        <div class="instagram-continue">
+          <form class="group login-card" id="login-form" novalidate>
+            <img
+              src="./img/instagram-logo.png"
+              alt="Instagram"
+              class="instagram-logo"
+            />
+
+            <div class="field">
+              <div class="field__box">
+                <input
+                  type="text"
+                  id="username"
+                  name="username"
+                  class="field__input"
+                  autocomplete="username"
+                  required
+                  aria-describedby="username-error"
+                  data-i18n-placeholder="usernamePlaceholder"
+                />
+                <label
+                  for="username"
+                  class="field__label"
+                  data-i18n="usernameLabel"
+                  >Telefone, usuário ou e-mail</label
+                >
+              </div>
+              <p
+                class="field__error"
+                id="username-error"
+                role="alert"
+                aria-live="polite"
+              ></p>
             </div>
+
+            <div class="field">
+              <div class="field__box">
+                <input
+                  type="password"
+                  id="password"
+                  name="password"
+                  class="field__input"
+                  autocomplete="current-password"
+                  required
+                  aria-describedby="password-error"
+                  data-i18n-placeholder="passwordPlaceholder"
+                />
+                <label
+                  for="password"
+                  class="field__label"
+                  data-i18n="passwordLabel"
+                  >Senha</label
+                >
+                <button
+                  type="button"
+                  class="field__toggle"
+                  id="toggle-password"
+                  data-i18n="togglePassword"
+                  aria-pressed="false"
+                >
+                  Mostrar senha
+                </button>
+              </div>
+              <p
+                class="field__error"
+                id="password-error"
+                role="alert"
+                aria-live="polite"
+              ></p>
+            </div>
+
+            <button type="submit" class="login-button" data-i18n="loginButton">
+              Entrar
+            </button>
+
+            <div class="divider" role="separator" aria-hidden="true">
+              <span data-i18n="orDivider">OU</span>
+            </div>
+
+            <a href="#" class="forgot-link" data-i18n="forgotPassword"
+              >Esqueceu a senha?</a
+            >
+          </form>
+
+          <div class="group signup-card">
+            <p class="signup-card__text">
+              <span data-i18n="noAccount">Não tem uma conta?</span>
+              <a href="#/signup" class="link-blue" data-i18n="signUp"
+                >Cadastre-se</a
+              >
+            </p>
+          </div>
+
+          <p class="demo-hint" data-i18n="demoHint">
+            Conta de demonstração: demo / demo123
+          </p>
+
+          <section class="get-the-app" aria-label="Get the app">
+            <p class="get-app" data-i18n="getApp">Baixe o aplicativo</p>
+            <div class="download">
+              <a
+                href="#"
+                class="app-download app-download--apple"
+                data-i18n-aria="appStore"
+                aria-label="Disponível na App Store"
+              ></a>
+              <a
+                href="#"
+                class="app-download app-download--google"
+                data-i18n-aria="googlePlay"
+                aria-label="Disponível no Google Play"
+              ></a>
+            </div>
+          </section>
+        </div>
+      </section>
+
+      <!-- ============ SIGNUP ============ -->
+      <section class="view" data-view="signup" hidden>
+        <h1 class="visually-hidden" data-view-heading tabindex="-1" data-i18n="signupView">
+          Criar conta
+        </h1>
+
+        <div class="instagram-continue">
+          <form class="group signup-form" id="signup-form" novalidate>
+            <img
+              src="./img/instagram-logo.png"
+              alt="Instagram"
+              class="instagram-logo instagram-logo--small"
+            />
+            <p class="signup-intro" data-i18n="signupView">Criar conta</p>
+
+            <div class="field">
+              <div class="field__box">
+                <input
+                  type="text"
+                  id="su-name"
+                  name="name"
+                  class="field__input"
+                  autocomplete="name"
+                  required
+                  aria-describedby="su-name-error"
+                />
+                <label for="su-name" class="field__label" data-i18n="suName"
+                  >Nome completo</label
+                >
+              </div>
+              <p
+                class="field__error"
+                id="su-name-error"
+                role="alert"
+                aria-live="polite"
+              ></p>
+            </div>
+
+            <div class="field">
+              <div class="field__box">
+                <input
+                  type="text"
+                  id="su-username"
+                  name="username"
+                  class="field__input"
+                  autocomplete="username"
+                  autocapitalize="off"
+                  spellcheck="false"
+                  required
+                  aria-describedby="su-username-error"
+                />
+                <label
+                  for="su-username"
+                  class="field__label"
+                  data-i18n="suUsername"
+                  >Nome de usuário</label
+                >
+              </div>
+              <p
+                class="field__error"
+                id="su-username-error"
+                role="alert"
+                aria-live="polite"
+              ></p>
+            </div>
+
+            <div class="field">
+              <div class="field__box">
+                <input
+                  type="text"
+                  id="su-contact"
+                  name="contact"
+                  class="field__input"
+                  autocomplete="email"
+                  required
+                  aria-describedby="su-contact-error"
+                />
+                <label
+                  for="su-contact"
+                  class="field__label"
+                  data-i18n="suContact"
+                  >Telefone ou e-mail</label
+                >
+              </div>
+              <p
+                class="field__error"
+                id="su-contact-error"
+                role="alert"
+                aria-live="polite"
+              ></p>
+            </div>
+
+            <div class="field">
+              <div class="field__box">
+                <input
+                  type="password"
+                  id="su-password"
+                  name="new-password"
+                  class="field__input"
+                  autocomplete="new-password"
+                  required
+                  aria-describedby="su-password-error"
+                />
+                <label
+                  for="su-password"
+                  class="field__label"
+                  data-i18n="suPassword"
+                  >Senha</label
+                >
+                <button
+                  type="button"
+                  class="field__toggle"
+                  id="su-toggle-password"
+                  data-i18n="togglePassword"
+                  aria-pressed="false"
+                >
+                  Mostrar senha
+                </button>
+              </div>
+              <div class="strength">
+                <div class="strength__track">
+                  <div class="strength__bar" id="su-strength-bar"></div>
+                </div>
+                <span class="strength__label" id="su-strength-label"></span>
+              </div>
+              <p class="caps-hint" id="su-caps-hint" aria-live="polite">
+                <span data-i18n="capsLock">Caps Lock ativado</span>
+              </p>
+              <p
+                class="field__error"
+                id="su-password-error"
+                role="alert"
+                aria-live="polite"
+              ></p>
+            </div>
+
+            <button type="submit" class="login-button" data-i18n="suButton">
+              Cadastre-se
+            </button>
+          </form>
+
+          <div class="group signup-card">
+            <p class="signup-card__text">
+              <span data-i18n="suHaveAccount">Já tem uma conta?</span>
+              <a href="#/login" class="link-blue" data-i18n="suLogin"
+                >Conecte-se</a
+              >
+            </p>
+          </div>
+        </div>
+      </section>
+
+      <!-- ============ FEED ============ -->
+      <section class="view" data-view="feed" hidden>
+        <h1 class="visually-hidden" data-view-heading tabindex="-1" data-i18n="feedView">
+          Feed
+        </h1>
+
+        <div class="feed">
+          <header class="feed-header">
+            <a href="#/feed" class="feed-header__brand">
+              <img
+                src="./img/instagram-logo.png"
+                alt="Instagram"
+                class="feed-logo"
+              />
+            </a>
+            <div class="feed-header__right">
+              <span class="avatar avatar--header" aria-hidden="true"></span>
+              <button
+                type="button"
+                class="logout-button"
+                id="logout-button"
+                data-i18n-aria="logoutLabel"
+                aria-label="Sair"
+              ></button>
+            </div>
+          </header>
+
+          <nav class="stories"></nav>
+
+          <section class="posts" aria-label="Posts"></section>
+        </div>
+      </section>
+    </main>
+
+    <footer class="footer">
+      <div class="footer__inner">
+        <label class="lang">
+          <span class="visually-hidden" data-i18n="langLabel">Idioma</span>
+          <select id="lang-select" aria-label="Language / Idioma">
+            <option value="pt-BR">Português (Brasil)</option>
+            <option value="en">English</option>
+          </select>
+        </label>
+        <p class="footer__copy" data-i18n="copyright">Meta © 2026</p>
       </div>
-    </div>
+    </footer>
+
+    <div class="toasts" id="toasts" aria-live="polite"></div>
+
+    <script type="module" src="js/main.js"></script>
   </body>
 </html>
